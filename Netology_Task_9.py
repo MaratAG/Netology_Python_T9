@@ -41,9 +41,9 @@ def return_cook_book():
                     our_ingridient = line.split('|')
 
                     dish_ingridients = {}
-                    dish_ingridients['ingridient_name'] = our_ingridient[0]
+                    dish_ingridients['ingridient_name'] = our_ingridient[0].strip()
                     dish_ingridients['quantity'] = float(our_ingridient[1])
-                    dish_ingridients['measure'] = our_ingridient[2]
+                    dish_ingridients['measure'] = our_ingridient[2].strip()
                     dish_reciept.append(dish_ingridients)
         cook_book[dish] = dish_reciept
 
