@@ -34,7 +34,7 @@ def return_cook_book():
                 #  не требуется, поэтому ее пропускаем.
                 our_file.readline()
             else:
-                if line == '':
+                if not line:
                     cook_book[dish] = dish_reciept
                     finish_reciept = True
                 else:
