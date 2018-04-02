@@ -1,20 +1,20 @@
 """Программа расчета необходимых для готовки блюд ингридиентов."""
 
 
-def return_our_shop_list(our_cook_book, our_dishes, our_person_count):
+def return_shop_list(cook_book, dishes, person_count):
     """Расчет необходимых для покупки ингридиентов."""
-    our_list = {}
-    for dish in our_dishes:
-        for ingridient in our_cook_book[dish]:
+    shop_list = {}
+    for dish in dishes:
+        for ingridient in cook_book[dish]:
             new_shop_list_item = dict(ingridient)
-            new_shop_list_item['quantity'] *= our_person_count
-            if new_shop_list_item['ingridient_name'] not in our_list:
-                our_list[new_shop_list_item['ingridient_name']] \
+            new_shop_list_item['quantity'] *= person_count
+            if new_shop_list_item['ingridient_name'] not in shop_list:
+                shop_list[new_shop_list_item['ingridient_name']] \
                     = new_shop_list_item
             else:
-                our_list[new_shop_list_item['ingridient_name']]['quantity'] \
+                shop_list[new_shop_list_item['ingridient_name']]['quantity'] \
                     += new_shop_list_item['quantity']
-    return our_list
+    return shop_list
 
 
 def return_cook_book():
@@ -41,7 +41,8 @@ def return_cook_book():
                     our_ingridient = line.split('|')
 
                     dish_ingridients = {}
-                    dish_ingridients['ingridient_name'] = our_ingridient[0].strip()
+                    dish_ingridients['ingridient_name'] = \
+                        our_ingridient[0].strip()
                     dish_ingridients['quantity'] = float(our_ingridient[1])
                     dish_ingridients['measure'] = our_ingridient[2].strip()
                     dish_reciept.append(dish_ingridients)
@@ -68,7 +69,7 @@ def main():
     person_count = int(input('Введите количество человек: '))
     dishes = return_dishes()
     cook_book = return_cook_book()
-    print_shop_list(return_our_shop_list(cook_book, dishes, person_count))
+    print_shop_list(return_shop_list(cook_book, dishes, person_count))
 
 
 main()
